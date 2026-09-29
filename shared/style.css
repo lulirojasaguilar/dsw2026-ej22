@@ -1,0 +1,32 @@
+/* Estilos globales compartidos por todas las páginas (equivalente al style.css del ejercicio).
+   Mobile first: la base es el celular y con min-width: 600px se amplía para escritorio.
+   Colores y tipografía según los mockups del TPI (MedPortal). */
+* {
+  box-sizing: border-box;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+body {
+  margin: 0;
+  font-size: 1rem;
+  height: 100dvh;
+  font-family: 'Public Sans', 'Inter', 'Segoe UI', sans-serif;
+  color: #151C20;
+}
+
+img {
+  max-width: 100%;
+}
+
+a {
+  color: inherit;
+}
+
+@media screen and (min-width: 600px) {
+  body {
+    font-size: 0.875rem;
+  }
+}
