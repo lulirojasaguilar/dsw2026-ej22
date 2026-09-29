@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Listado de Especialidades</title>
+  <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="../shared/style.css">
+  <link rel="stylesheet" href="../dashboard/dashboard_style.css">
+  <link rel="stylesheet" href="specialties_style.css">
+  <script src="../shared/storage.js"></script>
+  <script src="../dashboard/dashboard.js"></script>
+  <script src="specialties.js"></script>
+</head>
+<body>
+  <div class="dashboard-container">
+    <header>
+      <span>MedPortal</span>
+      <div>
+        <button class="menu" id="menu-btn">&#9776;</button>
+      </div>
+    </header>
+    <!-- Menú lateral -->
+    <nav id="sidebar">
+      <div class="nav-brand">
+        <p>Portal Admin</p>
+        <small>Gestión Hospitalaria</small>
+      </div>
+      <ul>
+        <li><a href="../dashboard/dashboard.html"><i class="bi bi-grid-1x2"></i>Panel Control</a></li>
+        <li><a href="../specialties/specialties.html" class="active"><i class="bi bi-briefcase"></i>Especialidades</a></li>
+        <li><a href="#" class="disabled" title="Próximamente"><i class="bi bi-person-vcard"></i>Médicos</a></li>
+        <li><a href="#" class="disabled" title="Próximamente"><i class="bi bi-people"></i>Pacientes</a></li>
+      </ul>
+      <div class="nav-footer">
+        <a href="#" class="disabled" title="Próximamente"><i class="bi bi-question-circle"></i>Ayuda</a>
+        <button id="logout"><i class="bi bi-box-arrow-right"></i>Cerrar Sesión</button>
+        <div class="nav-user">
+          <img src="../shared/img/admin-user.jpg" alt="">
+          <div>
+            <p>Usuario Admin</p>
+            <small>Superadministrador</small>
+          </div>
+        </div>
+      </div>
+    </nav>
+    <!-- Contenido -->
+    <main>
+      <!-- Encabezado y buscador -->
+      <div class="page-head">
+        <div>
+          <h1>Directorio de Especialidades</h1>
+          <p class="subtitle">Administre las categorías médicas, servicios y disponibilidad del personal especializado.</p>
+        </div>
+        <div class="page-actions">
+          <div class="search-box">
+            <i class="bi bi-search"></i>
+            <input type="search" id="search-input" class="search" placeholder="Buscar especialidad...">
+          </div>
+          <button id="search-btn" class="btn outline">Buscar</button>
+          <a href="specialty.html" class="btn"><i class="bi bi-plus-lg"></i>Nueva Especialidad</a>
+        </div>
+      </div>
+      <p id="search-error" class="error"></p>
+
+      <!-- Tabla -->
+      <div class="card">
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>Nombre de la Especialidad</th>
+                <th>Descripción</th>
+                <th>Estado</th>
+                <th>Acciones</th>
+              </tr>
+            </thead>
+            <tbody id="specialty-table-body">
+            </tbody>
+          </table>
+        </div>
+        <div class="card-foot pager">
+          <span id="page-info">Mostrando 0 a 0 de 0 resultados</span>
+          <div>
+            <button id="prev-page"><i class="bi bi-chevron-left"></i></button>
+            <button id="next-page"><i class="bi bi-chevron-right"></i></button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Estadísticas -->
+      <div class="specialty-stats">
+        <div class="specialty-stat">
+          <p class="label">Total Especialidades</p>
+          <p class="value" id="stat-total">0</p>
+          <span class="icon"><i class="bi bi-list-ul"></i></span>
+          <p class="note green"><i class="bi bi-graph-up-arrow"></i><span id="stat-total-note">+0 este trimestre</span></p>
+        </div>
+        <div class="specialty-stat">
+          <p class="label">Más demandada</p>
+          <p class="value">-</p>
+          <span class="icon"><i class="bi bi-heart"></i></span>
+          <p class="note">Sin citas registradas</p>
+        </div>
+        <div class="specialty-stat teal">
+          <p class="label">Nuevas este mes</p>
+          <p class="value" id="stat-new">0</p>
+          <span class="icon"><i class="bi bi-check-circle"></i></span>
+          <p class="note strong" id="stat-new-note">-</p>
+        </div>
+      </div>
+
+      <div class="banner"></div>
+    </main>
+    <footer>MedPortal &copy; 2026</footer>
+  </div>
+</body>
+</html>
