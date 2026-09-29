@@ -4,7 +4,7 @@
    que aplican las mismas reglas que el backend del TPI. */
 
 const ADMINS_KEY = 'medportal_admins';
-const SPECIALTIES_KEY = 'medportal_specialties';
+const SPECIALTIES_KEY = 'specialties';
 const SESSION_KEY = 'medportal_session';
 
 // Administrador inicial (el mismo que crea el backend al arrancar)
@@ -20,6 +20,11 @@ function read(key, fallback) {
 
 function write(key, value) {
   localStorage.setItem(key, JSON.stringify(value));
+}
+
+// Ejercicio 25: el array "specialties" se inicializa vacío en localStorage si todavía no existe
+if (localStorage.getItem(SPECIALTIES_KEY) === null) {
+  write(SPECIALTIES_KEY, []);
 }
 
 /* ---------- Validaciones compartidas ---------- */
