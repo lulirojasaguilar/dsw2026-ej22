@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Registro de Administrador</title>
+  <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="../shared/style.css">
+  <link rel="stylesheet" href="login_style.css">
+
+  <script src="../shared/storage.js"></script>
+  <script src="register.js"></script>
+</head>
+<body>
+  <div class="login-container">
+    <span class="login-logo"><i class="bi bi-shield-plus"></i></span>
+    <p class="login-brand">MedPortal</p>
+
+    <div class="login-card">
+      <form novalidate>
+        <p class="login-heading">Registro de administrador</p>
+        <p class="login-subtitle">Complete los datos para dar de alta una nueva cuenta de administración.</p>
+
+        <label for="email">Correo electrónico</label>
+        <div class="input-icon">
+          <i class="bi bi-envelope"></i>
+          <input type="email" id="email" name="email" autocomplete="email" placeholder="ejemplo@gmail.com" required>
+        </div>
+
+        <label for="password">Contraseña</label>
+        <div class="input-icon">
+          <i class="bi bi-lock"></i>
+          <input type="password" id="password" name="password" autocomplete="new-password" placeholder="Mínimo 8 caracteres" required>
+          <button type="button" id="toggle-password"><i class="bi bi-eye"></i></button>
+        </div>
+
+        <label for="password2">Repetir contraseña</label>
+        <div class="input-icon">
+          <i class="bi bi-lock"></i>
+          <input type="password" id="password2" name="password2" autocomplete="new-password" required>
+        </div>
+
+        <p id="register-error" class="error"></p>
+
+        <button type="submit">Registrar administrador <i class="bi bi-person-plus"></i></button>
+
+        <p class="login-link">¿Ya tenés cuenta? <a href="login.html">Iniciar sesión</a></p>
+      </form>
+
+      <div class="login-notice">
+        <i class="bi bi-shield-check"></i>
+        <p><strong>Solo Acceso Seguro:</strong> Este sistema es para personal médico autorizado. Los intentos de acceso no autorizados son registrados y monitoreados para su cumplimiento.</p>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
