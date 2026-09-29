@@ -1,39 +1,138 @@
+/* Grilla del panel (header, nav, main y footer) y componentes comunes de las páginas del administrador.
+   Colores según los mockups del TPI. */
 .dashboard-container {
   display: grid;
-  grid-template-columns: auto;
+  grid-template-columns: minmax(0, 1fr);
   grid-template-rows: auto 1fr auto;
-  grid-template-areas: 
+  grid-template-areas:
     "header"
     "main"
     "footer";
   height: 100dvh;
+  background-color: #F4FAFF;
 }
 
+/* ---------- Nav (sidebar) ---------- */
 .dashboard-container nav {
   position: absolute;
   top: 0;
   bottom: 0;
-  width: 200px;
-  background-color: #f4f4f4;
-  left: -200px;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  width: 240px;
+  overflow-y: auto;
+  background-color: #F8FAFC;
+  border-right: 1px solid #DFE6EE;
+  left: -240px;
+  transition: left 0.2s ease;
+}
+
+.dashboard-container nav.open {
+  left: 0;
+}
+
+.nav-brand {
+  padding: 2rem 1.5rem 0;
+}
+
+.nav-brand p {
+  margin: 0;
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: #0B4A82;
+}
+
+.nav-brand small {
+  font-size: 0.6875rem;
+  color: #56606B;
 }
 
 .dashboard-container nav ul {
+  flex: 1;
   list-style: none;
   padding: 0;
+  margin: 2rem 0 0;
+}
+
+.dashboard-container nav ul li a,
+.nav-footer a,
+.nav-footer button {
+  display: flex;
+  align-items: center;
+  gap: 0.875rem;
+  padding: 0.8rem 1rem;
+  font-size: 0.875rem;
+  color: #56606B;
+  text-decoration: none;
+}
+
+.dashboard-container nav ul li a.active {
+  background: #EEF4FA;
+  color: #0B4A82;
+  font-weight: 600;
+  box-shadow: inset -3px 0 0 #0B4A82;
+}
+
+.dashboard-container nav .bi {
+  font-size: 1.25rem;
+}
+
+.nav-footer {
+  margin: 0.75rem 1rem 0;
+  padding: 0.875rem 0 1rem;
+  border-top: 1px solid #DFE6EE;
+}
+
+.nav-footer a,
+.nav-footer button {
+  width: 100%;
+  padding-left: 2rem;
+  background: none;
+  border: 0;
+  cursor: pointer;
+}
+
+.nav-user {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.625rem 0 0 1.5rem;
+}
+
+.nav-user img {
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: 0.375rem;
+  object-fit: cover;
+}
+
+.nav-user p {
   margin: 0;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #0A2540;
 }
 
-.dashboard-container nav ul li {
-  padding: 1rem;
-  border-bottom: 1px solid #ddd;
+.nav-user small {
+  font-size: 0.625rem;
+  color: #56606B;
 }
 
+/* Enlaces a pantallas que todavía no forman parte de esta entrega (se ven como en el mockup, pero no navegan) */
+.disabled {
+  pointer-events: none;
+  cursor: default;
+}
+
+/* ---------- Header, main y footer ---------- */
 .dashboard-container header {
   grid-area: header;
   height: 50px;
-  background-color: #333;
-  color: white;
+  background-color: white;
+  color: #00355F;
+  font-weight: 700;
+  border-bottom: 1px solid #E0E7EE;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -46,6 +145,14 @@
   gap: 1rem;
 }
 
+.dashboard-container header .menu {
+  background: none;
+  border: 0;
+  font-size: 1.5rem;
+  color: #07497D;
+  cursor: pointer;
+}
+
 .dashboard-container main {
   grid-area: main;
   padding: 1rem;
@@ -54,30 +161,327 @@
 
 .dashboard-container footer {
   grid-area: footer;
-  background-color: #333;
-  color: white;
+  background-color: #F8FAFC;
+  border-top: 1px solid #DFE6EE;
+  color: #56606B;
+  font-size: 0.75rem;
   text-align: center;
   padding: 1rem;
 }
 
+/* ---------- Contenido ---------- */
+main h1 {
+  margin: 0;
+  font-size: 1.5rem;
+  color: #00355F;
+}
+
+main .subtitle {
+  margin: 0.375rem 0 0;
+  font-size: 0.9375rem;
+  line-height: 1.5;
+  color: #40484F;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  min-height: 3rem;
+  padding: 0.5rem 1.25rem;
+  border: 1.5px solid #07497D;
+  border-radius: 0.3125rem;
+  background: #07497D;
+  color: white;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.btn.outline {
+  background: white;
+  color: #07497D;
+}
+
+.stats {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.25rem;
+  margin: 1.5rem 0;
+}
+
+.stat {
+  display: flex;
+  flex-direction: column;
+  min-height: 11.5rem;
+  padding: 1.5rem;
+  background: white;
+  border: 1px solid #C7CDD6;
+  border-radius: 0.375rem;
+}
+
+.stat-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.stat-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.8rem;
+  height: 3.2rem;
+  border-radius: 0.5625rem;
+  background: #F1F4F7;
+  color: #0B4A82;
+  font-size: 1.25rem;
+}
+
+.badge {
+  padding: 0.1875rem 0.5rem;
+  border-radius: 0.1875rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.badge.green { background: #F0FDFA; color: #0D9488; }
+.badge.grey { background: #F1F3F5; color: #5B6470; }
+.badge.blue { background: #EAF3FF; color: #2563EB; }
+
+.stat-label {
+  margin: auto 0 0;
+  padding-top: 1.875rem;
+  font-size: 0.875rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #2E3742;
+}
+
+.stat-value {
+  margin: 0.25rem 0 0;
+  font-size: 1.875rem;
+  font-weight: 700;
+  color: #00355F;
+}
+
+.card {
+  overflow: hidden;
+  background: white;
+  border: 1px solid #C4CBD4;
+  border-radius: 0.375rem;
+}
+
+.card-head {
+  display: flex;
+  flex-direction: column;
+  gap: 0.875rem;
+  padding: 1.25rem 1rem;
+}
+
+.card-head h2 {
+  margin: 0;
+  font-size: 1.125rem;
+  font-weight: 500;
+  color: #0B3A6B;
+}
+
+.search-box {
+  position: relative;
+}
+
+.search-box .bi {
+  position: absolute;
+  top: 50%;
+  left: 0.75rem;
+  transform: translateY(-50%);
+  color: #4A5563;
+  pointer-events: none;
+}
+
+.search {
+  width: 100%;
+  height: 2.5rem;
+  padding: 0 0.75rem 0 2.375rem;
+  border: 1px solid #BADCEE;
+  border-radius: 0.25rem;
+  background: #D9F2FF;
+  font-size: 0.8125rem;
+}
+
+.table-wrapper {
+  overflow-x: auto;
+}
+
+.dashboard-container table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.dashboard-container th {
+  padding: 0.875rem 1rem;
+  background: #E6F6FF;
+  border-top: 1px solid #C9DCEA;
+  border-bottom: 1px solid #C9DCEA;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  text-align: left;
+  color: #2B3640;
+  white-space: nowrap;
+}
+
+.dashboard-container td {
+  padding: 1rem;
+  border-bottom: 1px solid #C9CFD6;
+  font-size: 0.875rem;
+  color: #1D2630;
+}
+
+.dashboard-container td.empty {
+  text-align: center;
+}
+
+.dashboard-container th.right {
+  text-align: right;
+}
+
+.card-foot {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 1rem;
+  background: #E6F6FF;
+  border-top: 1px solid #C9DCEA;
+  font-size: 0.75rem;
+  color: #2B3640;
+}
+
+.pager button {
+  min-width: 1.75rem;
+  height: 2rem;
+  border: 1px solid #BFD0DC;
+  border-radius: 0.1875rem;
+  background: white;
+  cursor: pointer;
+}
+
+.pager button:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
 @media screen and (min-width: 600px) {
   .dashboard-container {
-    grid-template-columns: 200px 1fr;
-    grid-template-areas: 
-      "header header"
-      "nav main"
-      "footer footer";
+    grid-template-columns: 240px minmax(0, 1fr);
+    grid-template-areas:
+      "nav main";
+    grid-template-rows: 1fr;
+  }
+
+  /* En escritorio el mockup no tiene header ni footer: el nav queda fijo a la izquierda */
+  .dashboard-container header,
+  .dashboard-container footer {
+    display: none;
   }
 
   .dashboard-container nav {
     grid-area: nav;
     position: static;
     left: 0;
-    height: auto;
+    height: 100dvh;
   }
 
   .dashboard-container header div .menu {
     display: none;
   }
+
+  .dashboard-container main {
+    padding: 2.125rem 1.875rem 2.5rem;
+  }
+
+  main h1 {
+    font-size: 1.875rem;
+  }
+
+  .card-head .search-box {
+    flex: 0 1 14.5rem;
+  }
+
+  .card-head {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.25rem 1.5rem;
+  }
 }
 
+@media screen and (min-width: 900px) {
+  .stats {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* ---------- Efectos al pasar el mouse y al tocar ---------- */
+
+.btn,
+.dashboard-container nav ul li a,
+.nav-footer a,
+.nav-footer button,
+.dashboard-container header .menu,
+.pager button {
+  transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease, transform 0.1s ease;
+}
+
+.btn:hover {
+  background: #063A63;
+  border-color: #063A63;
+}
+
+.btn.outline:hover {
+  background: #EAF3FB;
+  color: #07497D;
+  border-color: #07497D;
+}
+
+.btn:active,
+.pager button:not(:disabled):active,
+.dashboard-container header .menu:active {
+  transform: scale(0.96);
+}
+
+.dashboard-container nav ul li a:hover,
+.nav-footer a:hover {
+  background: #EEF4FA;
+  color: #0B4A82;
+}
+
+.nav-footer button:hover {
+  background: #FEF2F2;
+  color: #DC2626;
+}
+
+.dashboard-container header .menu {
+  border-radius: 0.375rem;
+}
+
+.dashboard-container header .menu:hover {
+  background: #EEF4FA;
+}
+
+.pager button:not(:disabled):hover {
+  background: #EAF3FB;
+  border-color: #07497D;
+  color: #07497D;
+}
