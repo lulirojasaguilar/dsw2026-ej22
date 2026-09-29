@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const description = descriptionInput.value.trim();
     const active = statusSelect.value === 'true';
 
-    // Validaciones del TPI: name 3 a 100 caracteres, description 10 a 100 caracteres
+    // Validaciones
     let hasError = false;
     if (name.length < 3 || name.length > 100) {
       document.getElementById('name-error').textContent = 'El nombre debe tener entre 3 y 100 caracteres.';
@@ -25,8 +25,8 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     if (hasError) return;
 
+    // Guardar (ejercicio 24)
     try {
-      // Ejercicio 24: se crea el objeto con los valores del formulario y se muestra por consola
       const specialty = await createSpecialty({ name, description, active });
       console.log(specialty);
       window.location.href = 'specialties.html';

@@ -1,11 +1,7 @@
 const PAGE_SIZE = 5;
 
-// Ícono de cada especialidad según su nombre (Bootstrap Icons).
-// Se revisan en orden: gana la primera que coincide (por eso cirugía va primero:
-// "Neurocirugía" o "Cirugía cardiovascular" usan la tijera).
-// Si el nombre no coincide con ninguna, se usa el maletín genérico.
+// Íconos por especialidad (gana la primera que coincide)
 const CATEGORY_ICONS = [
-  // Quirúrgicas
   { match: /cirug/i, icon: 'scissors' },
   { match: /cabeza|cuello/i, icon: 'person-bounding-box' },
   { match: /proctol/i, icon: 'bullseye' },
@@ -13,7 +9,6 @@ const CATEGORY_ICONS = [
   { match: /mastol/i, icon: 'suit-heart' },
   { match: /pie diab/i, icon: 'person-standing' },
   { match: /quemad|pl.stic/i, icon: 'fire' },
-  // Clínicas
   { match: /cardio/i, icon: 'heart-pulse' },
   { match: /neuro/i, icon: 'activity' },
   { match: /dermat/i, icon: 'droplet' },
@@ -46,15 +41,14 @@ const CATEGORY_ICONS = [
   { match: /cl.nic|general|familia/i, icon: 'clipboard2-pulse' },
 ];
 
-let pageIndex = 0; // como en el backend, la primera página es la 0
+let pageIndex = 0;
 let searchName = '';
 
 document.addEventListener('DOMContentLoaded', () => {
   const searchInput = document.getElementById('search-input');
   const searchError = document.getElementById('search-error');
 
-  // TPI: el filtro por nombre debe tener entre 3 y 100 caracteres; vacío lista todo
-  // Ejercicio 23: la tabla se filtra al hacer click en el botón "Buscar".
+  // Buscador (ejercicio 23)
   document.getElementById('search-btn').addEventListener('click', () => {
     const term = searchInput.value.trim();
     if (term.length > 0 && term.length < 3) {
@@ -67,6 +61,7 @@ document.addEventListener('DOMContentLoaded', () => {
     loadSpecialties();
   });
 
+  // Paginado
   document.getElementById('prev-page').addEventListener('click', () => {
     pageIndex--;
     loadSpecialties();
@@ -92,6 +87,7 @@ async function loadSpecialties() {
   document.getElementById('next-page').disabled = to >= page.total;
 }
 
+// Tabla
 function renderTable(specialties) {
   const tbody = document.getElementById('specialty-table-body');
   tbody.innerHTML = '';
@@ -124,7 +120,6 @@ function renderTable(specialties) {
 
     const actions = row.insertCell();
     actions.className = 'row-actions';
-    // Editar y eliminar figuran en el mockup pero no forman parte de esta entrega
     actions.innerHTML = `
       <button disabled title="Próximamente"><i class="bi bi-pencil"></i></button>
       <button disabled title="Próximamente"><i class="bi bi-trash"></i></button>
@@ -132,6 +127,7 @@ function renderTable(specialties) {
   });
 }
 
+// Estadísticas
 async function loadStats() {
   const { data, total } = await getSpecialties({ pageSize: 1000 });
   document.getElementById('stat-total').textContent = total;
@@ -146,7 +142,6 @@ async function loadStats() {
     return created.getFullYear() === now.getFullYear() && created.getMonth() === now.getMonth();
   });
   document.getElementById('stat-new').textContent = String(newThisMonth.length).padStart(2, '0');
-  // Como en el mockup: se muestran las dos primeras y, si hay más, "..."
   const names = newThisMonth.map((specialty) => specialty.name);
   document.getElementById('stat-new-note').textContent = names.length
     ? names.slice(0, 2).join(', ') + (names.length > 2 ? ', ...' : '')

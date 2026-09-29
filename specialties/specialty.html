@@ -9,6 +9,7 @@
   <link rel="stylesheet" href="../shared/style.css">
   <link rel="stylesheet" href="../dashboard/dashboard_style.css">
   <link rel="stylesheet" href="specialties_style.css">
+  <script src="../shared/storage.js"></script>
   <script src="../dashboard/dashboard.js"></script>
   <script src="specialty.js"></script>
 </head>
@@ -20,6 +21,7 @@
         <button class="menu" id="menu-btn">&#9776;</button>
       </div>
     </header>
+    <!-- Menú lateral -->
     <nav id="sidebar">
       <div class="nav-brand">
         <p>Portal Admin</p>
@@ -43,11 +45,13 @@
         </div>
       </div>
     </nav>
+    <!-- Contenido -->
     <main>
       <p class="breadcrumb"><a href="specialties.html">Especialidades</a> &rsaquo; <span>Agregar Nueva Especialidad</span></p>
       <h1 class="form-title">Registrar Nueva Especialidad</h1>
       <p class="subtitle">Complete la información técnica y administrativa para dar de alta una especialidad médica en el sistema hospitalario.</p>
 
+      <!-- Formulario -->
       <form class="specialty-form" novalidate>
         <label for="name">Nombre de la Especialidad</label>
         <input type="text" id="name" name="name" placeholder="Ej. Cardiología Intervencionista" required>
